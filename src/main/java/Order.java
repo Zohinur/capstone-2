@@ -5,9 +5,32 @@ import java.util.HashSet;
 public class Order {
     public HashSet<MenuItem> order = new HashSet<MenuItem>();
     private String customerName;
-    private LocalDate date;
-    private LocalTime time;
+    private LocalDate date = LocalDate.now();
+    private LocalTime time = LocalTime.now();
 
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public String getCustomerName() {
+        return customerName;
+    }
+
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
+
+    public LocalTime getTime() {
+        return time;
+    }
+
+    public void setTime(LocalTime time) {
+        this.time = time;
+    }
 
     public HashSet<MenuItem> getOrder(){
 return this.order;
@@ -32,5 +55,10 @@ return this.order;
         return price;
     }
 
-
+        @Override
+    public String toString(){
+        return "Date: " + getDate() +
+                ", Time: " + getTime() +
+                ", Name: " + getCustomerName();
+        }
 }

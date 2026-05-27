@@ -9,6 +9,9 @@ public class userInterface {
     public void userinterface() {
 
     }
+    public void init(){
+            fileManager.getOrder(item);
+    }
 
     public void display() {
         boolean running = true;
@@ -19,7 +22,7 @@ public class userInterface {
             String userSelection = myScanner.nextLine();
 
             switch (userSelection) {
-                case "yes":
+                case "sandwich":
                     makeSandwich();
                     break;
                 case "show":
@@ -27,6 +30,9 @@ public class userInterface {
                     break;
                 case "total":
                     getTotalPrice();
+                    break;
+                case"Add":
+                    init();
                     break;
                 case "no":
                     running = false;
@@ -50,8 +56,8 @@ public class userInterface {
 
         System.out.println("would you like your bread toasted? enter yes or no");
         String toastInput = myScanner.nextLine();
-
         sandwich.setToastBread(toastInput.equalsIgnoreCase("yes"));
+
         System.out.println("What meat you like on your sandwich?");
         String meatInput = myScanner.nextLine();
         sandwich.setMeats(meatInput);
