@@ -1,25 +1,27 @@
 public class Drinks implements MenuItem{
-    private int size;
+    private String size;
 
-    public Drinks(int size) {
+    public Drinks(String size) {
         this.size = size;
     }
+    public Drinks(){
+    }
 
-    public int getSize() {
+    public String getSize() {
         return size;
     }
 
-    public void setSize(int size) {
+    public void setSize(String size) {
         this.size = size;
     }
 
     @Override
     public double getPrice(){
-        if (getSize() == 1) {
+        if (getSize().equalsIgnoreCase("small")) {
             return 2;
-        } else if (getSize() == 2){
+        } else if (getSize().equalsIgnoreCase("medium")){
             return 2.50;
-        } else if( getSize() == 3) {
+        } else if( getSize().equalsIgnoreCase("large")) {
             return 3.00;
         }
         return 0;
