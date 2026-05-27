@@ -10,6 +10,9 @@ public class sandwich implements MenuItem {
     private String sides;
     private int size;
 
+    public sandwich(){
+    }
+
     public sandwich(String bread, boolean toastBread, String meats, boolean extraMeat, String cheese, boolean extraCheese, String toppings, String sauces, String sides, int size) {
         this.bread = bread;
         this.toastBread = toastBread;
