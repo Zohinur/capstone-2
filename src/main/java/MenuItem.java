@@ -1,3 +1,3 @@
-public interface Menu {
+public interface MenuItem {
     public double getPrice();
 }
