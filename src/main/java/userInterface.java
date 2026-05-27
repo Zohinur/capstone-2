@@ -89,7 +89,19 @@ public class userInterface {
 
     public void addDrink() {
         Drinks newDrink = new Drinks();
-        System.out.println("What size drink would you like? ");
+
+        System.out.println("What size drink would you like? Enter small, medium, or large");
+        String userSelection = myScanner.nextLine();
+        newDrink.setSize(userSelection);
+
+        item.createItem(newDrink);
+    }
+
+    public void addChips(){
+        Chips newChip = new Chips();
+
+        System.out.println("Adding chips to your order! ");
+        item.createItem(newChip);
     }
 
 
