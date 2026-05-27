@@ -67,8 +67,8 @@ public class userInterface {
         System.out.println("Would you also like sides? ");
         String sideInput = myScanner.nextLine();
         sandwich.setSides(sideInput);
-        System.out.println("Here is your total for this sandwich");
-        sandwich.getPrice();
+        System.out.println("Here is your total for this sandwich:");
+        System.out.println(sandwich.getPrice());
 
          item.createItem(sandwich);
 
@@ -77,7 +77,5 @@ public class userInterface {
     public void getOrder(){
 item.displayOrder(item.getOrder());
     }
-
-
 
 }
