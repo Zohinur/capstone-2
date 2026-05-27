@@ -118,7 +118,7 @@ public class sandwich implements MenuItem {
 
     @Override
     public double getPrice() {
-        double totalPrice = 0;
+
         if (getSize() == 4) {
             double bread = 5.50;
             double meats = 1.00;
@@ -131,7 +131,7 @@ public class sandwich implements MenuItem {
             if (extraCheese) {
                 extraCheesse += .30;
             }
-            return totalPrice = bread + meats + Cheese + extraMmeat + extraCheesse;
+            return bread + meats + Cheese + extraMmeat + extraCheesse;
 
         } else if (getSize() == 8) {
             double bread = 7;
@@ -145,7 +145,7 @@ public class sandwich implements MenuItem {
             if (extraCheese) {
                 extraCheesse = .60;
             }
-            return totalPrice += bread + meats + Cheese + extraMmeat + extraCheesse;
+            return  bread + meats + Cheese + extraMmeat + extraCheesse;
 
         }
         if (getSize() == 12) {
@@ -160,8 +160,8 @@ public class sandwich implements MenuItem {
             if (extraCheese) {
                 extraCheesse += .90;
             }
-            return totalPrice += bread + meats + Cheese + extraCheesse + extraMmeat;
+            return  bread + meats + Cheese + extraCheesse + extraMmeat;
         }
-        return totalPrice;
+    return 0;
     }
 }
