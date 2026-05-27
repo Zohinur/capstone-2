@@ -6,35 +6,38 @@ public class userInterface {
     Scanner myScanner = new Scanner(System.in);
 
 
-    public void userinterface(){
+    public void userinterface() {
 
     }
 
-    public void display(){
+    public void display() {
         boolean running = true;
-        do{
+        do {
             System.out.println("""
                     Look at your""");
 
             String userSelection = myScanner.nextLine();
 
-            switch(userSelection){
+            switch (userSelection) {
                 case "yes":
                     makeSandwich();
                     break;
-                case"show":
+                case "show":
                     getOrder();
                     break;
-                case"no":
+                case "total":
+                    getTotalPrice();
+                    break;
+                case "no":
                     running = false;
             }
-        } while(running);
+        } while (running);
 
 
     }
 
 
-    public void makeSandwich(){
+    public void makeSandwich() {
         sandwich sandwich = new sandwich();
 
         System.out.println("What size would you like?Enter either 4inch, 8inch, or 12inch");
@@ -79,21 +82,24 @@ public class userInterface {
 
         System.out.println("Here is your total for this sandwich:");
         System.out.println(sandwich.getPrice());
-         item.createItem(sandwich);
+        item.createItem(sandwich);
 
 
     }
 
-public void addDrink(){
+    public void addDrink() {
         Drinks newDrink = new Drinks();
-    System.out.println("What size drink would you like? ");
-    String
-}
+        System.out.println("What size drink would you like? ");
+    }
 
 
+    public void getOrder() {
+        item.displayOrder(item.getOrder());
+    }
 
-    public void getOrder(){
-item.displayOrder(item.getOrder());
+    public void getTotalPrice(){
+        double totalPrice = item.totalPrice();
+        System.out.println("Here is your total price of your order: "+ totalPrice);
     }
 
 }

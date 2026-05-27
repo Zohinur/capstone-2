@@ -24,5 +24,13 @@ return this.order;
         }
     }
 
+    public double totalPrice(){
+        double price =0;
+        for(MenuItem m: order){
+            price += m.getPrice();
+        }
+        return price;
+    }
+
 
 }
