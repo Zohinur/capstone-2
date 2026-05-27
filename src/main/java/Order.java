@@ -10,13 +10,18 @@ public class Order {
 
 
     public HashSet<MenuItem> getOrder(){
-        return order;
+return this.order;
     }
     public void createItem(MenuItem item){
         order.add(item);
     }
     public void removeItem(MenuItem item){
         order.remove(item);
+    }
+    public void displayOrder(HashSet<MenuItem> item){
+        for ( MenuItem m : item){
+            System.out.println(m);
+        }
     }
 
 

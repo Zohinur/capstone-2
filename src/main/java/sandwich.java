@@ -167,4 +167,8 @@ public class sandwich implements MenuItem {
         }
     return 0;
     }
+
+    public String toString(){
+        return ("this is your sandwich");
+    }
 }
