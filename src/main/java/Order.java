@@ -57,8 +57,6 @@ return this.order;
 
         @Override
     public String toString(){
-        return "Date: " + getDate() +
-                ", Time: " + getTime() +
-                ", Name: " + getCustomerName();
+        return ", sandwhich" + order.toString();
         }
 }

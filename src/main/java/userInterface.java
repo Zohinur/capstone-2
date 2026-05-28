@@ -9,37 +9,42 @@ public class userInterface {
     public void userinterface() {
 
     }
-    public void init(){
-            fileManager.getOrder(item);
+
+    public void init() {
+        fileManager.getOrder(item);
     }
 
     public void display() {
         boolean running = true;
         do {
             System.out.println("""
-                    Look at your""");
-
+                    Welcome to the Deli!!!
+                    What would you like to order?
+                    1. Make a Sandwich
+                    2. Add Drink
+                    3. Add chips
+                    4. checkout""");
             String userSelection = myScanner.nextLine();
 
             switch (userSelection) {
-                case "sandwich":
+                case "1":
                     makeSandwich();
                     break;
-                case "show":
+                case "2":
+                    addDrink();
+                    break;
+                case "3":
+                    addChips();
+                    break;
+                case "4":
+                    getTotalPrice();
                     getOrder();
                     break;
-                case "total":
-                    getTotalPrice();
-                    break;
-                case"Add":
-                    init();
-                    break;
                 case "no":
+                    init();
                     running = false;
             }
         } while (running);
-
-
     }
 
 
@@ -103,7 +108,7 @@ public class userInterface {
         item.createItem(newDrink);
     }
 
-    public void addChips(){
+    public void addChips() {
         Chips newChip = new Chips();
 
         System.out.println("Adding chips to your order! ");
@@ -115,9 +120,9 @@ public class userInterface {
         item.displayOrder(item.getOrder());
     }
 
-    public void getTotalPrice(){
+    public void getTotalPrice() {
         double totalPrice = item.totalPrice();
-        System.out.println("Here is your total price of your order: "+ totalPrice);
+        System.out.println("Here is your total price of your order: " + totalPrice);
     }
 
 }

@@ -4,6 +4,5 @@ public class Main {
 
     public static void main(String[] args) {
         user.display();
-        System.out.println(order.toString());
     }
 }

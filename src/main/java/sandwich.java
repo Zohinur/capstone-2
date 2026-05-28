@@ -169,6 +169,6 @@ public class sandwich implements MenuItem {
     }
 
     public String toString(){
-        return ("this is your sandwich"+ getBread() + getMeats());
+        return ("this is your sandwich"+ getBread() + getMeats() + getPrice());
     }
 }
