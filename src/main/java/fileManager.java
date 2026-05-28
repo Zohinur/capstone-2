@@ -4,11 +4,12 @@ import java.time.format.DateTimeFormatter;
 
 public class fileManager {
 
-    public static void getOrder(Order order) {
+    public static void saveOrder(Order order) {
         LocalDateTime now = LocalDateTime.now();
         DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyyMMdd-HHmmss");
         String dateTime = now.format(format);
 
+        //todo see note in teams re: making folder
         String folder = "src/main/resources/receipt/";
         String fileName = dateTime + ".txt";
 
@@ -19,17 +20,11 @@ public class fileManager {
 
             buff.write(order.toString());
             buff.newLine();
-            buff.flush();
             buff.close();
-
         } catch(IOException e){
             System.err.println("File not found, Try again " + e);
         }
     }
-//    try{
-//
-//    }catch (){
-
     }
 
 

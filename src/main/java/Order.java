@@ -4,6 +4,7 @@ import java.util.HashSet;
 
 public class Order {
     public HashSet<MenuItem> order = new HashSet<MenuItem>();
+    public MenuItem sandwich = new Sandwich();
     private String customerName;
     private LocalDate date = LocalDate.now();
     private LocalTime time = LocalTime.now();
@@ -57,6 +58,6 @@ return this.order;
 
         @Override
     public String toString(){
-        return ", sandwhich" + order.toString();
+        return ", sandwhich" + order;
         }
 }

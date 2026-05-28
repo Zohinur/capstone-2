@@ -1,17 +1,14 @@
-import java.util.HashSet;
 import java.util.Scanner;
 
 public class userInterface {
     public Order item = new Order();
     Scanner myScanner = new Scanner(System.in);
 
-
     public void userinterface() {
-
     }
 
     public void init() {
-        fileManager.getOrder(item);
+        fileManager.saveOrder(item);
     }
 
     public void display() {
@@ -49,11 +46,10 @@ public class userInterface {
 
 
     public void makeSandwich() {
-        sandwich sandwich = new sandwich();
+        Sandwich Sandwich = new Sandwich();
 
         System.out.println("What size would you like?Enter either 4inch, 8inch, or 12inch");
         int sizeInput = Integer.parseInt(myScanner.nextLine());
-        sandwich.setSize(sizeInput);
 
         System.out.println("Select your bread:");
         String userSelection = myScanner.nextLine();
@@ -94,8 +90,6 @@ public class userInterface {
         System.out.println("Here is your total for this sandwich:");
         System.out.println(sandwich.getPrice());
         item.createItem(sandwich);
-
-
     }
 
     public void addDrink() {

@@ -1,4 +1,6 @@
-public class sandwich implements MenuItem {
+import java.util.ArrayList;
+
+public class Sandwich implements MenuItem {
     private String bread;
     private boolean toastBread;
     private String meats;
@@ -6,14 +8,28 @@ public class sandwich implements MenuItem {
     private String cheese;
     private boolean extraCheese;
     private String toppings;
+    private ArrayList<Topping> enumToppings;
+
     private String sauces;
     private String sides;
     private int size;
 
-    public sandwich(){
+    public Sandwich(){
     }
 
-    public sandwich(String bread, boolean toastBread, String meats, boolean extraMeat, String cheese, boolean extraCheese, String toppings, String sauces, String sides, int size) {
+    public void addTopping(Topping topping) {
+        enumToppings.add(topping);
+    }
+
+    public boolean containsTopping(Topping topping) {
+        return enumToppings.contains(topping);
+    }
+    public ArrayList<Topping> getEnumToppings() {
+        return enumToppings;
+    }
+
+
+    public Sandwich(String bread, boolean toastBread, String meats, boolean extraMeat, String cheese, boolean extraCheese, String toppings, String sauces, String sides, int size) {
         this.bread = bread;
         this.toastBread = toastBread;
         this.meats = meats;
