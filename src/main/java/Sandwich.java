@@ -234,6 +234,6 @@ public class Sandwich implements MenuItem {
     }
 
     public String toString() {
-        return ("Ordered Sandwich: " + getBread() + getMeats() + getPrice()  + getEnumSides() + " ");
+        return ("Ordered Sandwich\uD83E\uDD6A " + "Bread:"+getBread() +" meat:" +getMeats() + " Extra Meat?:"+ isExtraMeat()+ " Cheese:" + getCheese() + " Toppings:" + getEnumToppings());
     }
 }
