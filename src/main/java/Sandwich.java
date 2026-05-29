@@ -9,7 +9,8 @@ public class Sandwich implements MenuItem {
     private boolean extraCheese;
     private String toppings;
     private ArrayList<Topping> enumToppings;
-
+    private ArrayList<Sauces> enumSauces;
+    private ArrayList<Sides> enumSides;
     private String sauces;
     private String sides;
     private int size;
@@ -27,6 +28,26 @@ public class Sandwich implements MenuItem {
     public ArrayList<Topping> getEnumToppings() {
         return enumToppings;
     }
+
+    public void addSauces(Sauces sauces){
+        enumSauces.add(sauces);
+    }
+    public boolean containsSauces(Sauces sauces){
+        return enumSauces.contains(sauces);
+    }
+    public ArrayList<Sauces> getEnumSauces(){
+        return enumSauces;
+    }
+    public void addSides(Sides sides){
+        enumSides.add(sides);
+    }
+    public boolean containsSides(Sides side){
+        return enumSides.contains(side);
+    }
+    public ArrayList<Sides> getEnumSides(){
+        return enumSides;
+    }
+
 
 
     public Sandwich(String bread, boolean toastBread, String meats, boolean extraMeat, String cheese, boolean extraCheese, String toppings, String sauces, String sides, int size) {
