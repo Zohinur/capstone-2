@@ -5,4 +5,9 @@ public class Chips implements MenuItem{
     public double getPrice() {
         return price;
     }
+
+    @Override
+    public String toString(){
+        return "Ordered 1 chip";
+    }
 }

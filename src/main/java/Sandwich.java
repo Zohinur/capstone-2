@@ -79,13 +79,15 @@ public class Sandwich implements MenuItem {
     }
 
     public void displaySides(){
+        int i = 1;
         for(Sides s: Sides.values()){
-            System.out.println(s);
+            System.out.println(i++ + " " +s);
         }
     }
     public void displayCustomerSides(ArrayList<Sides> sides){
+        int i =1;
         for(Sides s: sides){
-            System.out.println(s);
+            System.out.println(i++ + " " +s);
         }
     }
 
@@ -236,6 +238,6 @@ public class Sandwich implements MenuItem {
     }
 
     public String toString() {
-        return ("this is your sandwich" + getBread() + getMeats() + getPrice());
+        return ("this is your sandwich" + getBread() + getMeats() + getPrice() +" " + " " + displayCustomerSides(getEnumSides()) + " ");
     }
 }

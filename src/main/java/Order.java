@@ -40,8 +40,8 @@ return this.order;
     public void createItem(MenuItem item){
         order.add(item);
     }
-    public void removeItem(MenuItem item){
-        order.remove(item);
+    public void removeItem(){
+        order.clear();
     }
     public void displayOrder(ArrayList<MenuItem> item){
         for ( MenuItem m : item){

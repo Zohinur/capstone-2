@@ -38,15 +38,27 @@ public class userInterface {
                 case "4":
                     getTotalPrice();
                     getOrder();
-                    break;
-                case "5":
-                    displayRegularTopping();
-                    break;
+                    System.out.println("you like to check out the order or cancel?");
+                    String userCheck = myScanner.nextLine();
+                    if (userCheck.equalsIgnoreCase("Check")){
+                        checkOut();
+                        break;
+                    } else if (userCheck.equalsIgnoreCase("cancel")) {
+                        cancelOrder();
+                        break;
+                    }
                 case "no":
-                    init();
                     running = false;
             }
         } while (running);
+    }
+
+    private void cancelOrder() {
+        item.removeItem();
+    }
+
+    private void checkOut() {
+        init();
     }
 
 
@@ -118,6 +130,7 @@ public class userInterface {
 
     public void getTotalPrice() {
         double totalPrice = item.totalPrice();
+        System.out.println();
         System.out.println("Here is your total price of your order: " + totalPrice);
     }
 
