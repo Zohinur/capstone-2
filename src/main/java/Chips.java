@@ -3,6 +3,7 @@ public class Chips implements MenuItem {
 
     @Override
     public double getPrice() {
+        //returning the price for the chips
         return price;
     }
 

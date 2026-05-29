@@ -66,7 +66,7 @@ public class Order {
         for (MenuItem m : getOrder()) {
             result += m + "\n";
         }
-        result += "Total Price: " + totalPrice();
+        result += "Total Price\uD83D\uDCB0: " + totalPrice();
         return result;
     }
 }

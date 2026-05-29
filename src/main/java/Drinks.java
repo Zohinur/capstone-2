@@ -18,7 +18,9 @@ public class Drinks implements MenuItem {
 
     @Override
     public double getPrice() {
+        //Getting the price based on the size
         if (getSize().equalsIgnoreCase("small")) {
+            //getting the size then returning the price based off the size
             return 2;
         } else if (getSize().equalsIgnoreCase("medium")) {
             return 2.50;
@@ -30,6 +32,7 @@ public class Drinks implements MenuItem {
 
     @Override
     public String toString() {
+
         return "Added a " + getSize() + " Drink \uD83E\uDD6A price: " + getPrice();
     }
 }

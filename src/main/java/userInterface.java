@@ -408,6 +408,7 @@ public class userInterface {
 
     }
 
+    //Displays the sauces and only adds if its already not on it .
     public ArrayList<Sauces> displaySauces() {
         Sandwich sandwich = new Sandwich();
         System.out.println();

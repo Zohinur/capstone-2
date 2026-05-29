@@ -1,4 +1,4 @@
-# Sandwich Shop Ordering System
+# Big Zo's Deli Ordering System
 
 ## Overview
 
@@ -14,7 +14,7 @@ The application uses object-oriented programming concepts such as:
 * User input handling
 * File saving
 
----
+
 
 # Features
 
@@ -28,7 +28,6 @@ Users can:
 * Checkout
 * Cancel order
 
----
 
 # Sandwich Customization
 
@@ -94,7 +93,6 @@ Users can customize:
 * Au Jus
 * Sauce
 
----
 
 # Additional Items
 
@@ -110,7 +108,7 @@ Users can add:
 
 Users can add chips to their order.
 
----
+
 
 # Checkout System
 
@@ -121,7 +119,7 @@ The checkout system:
 * Allows users to confirm or cancel the order
 * Saves completed orders to a file
 
----
+
 
 # Technologies Used
 
@@ -132,7 +130,7 @@ The checkout system:
 * Object-Oriented Programming (OOP)
 * File Handling
 
----
+
 
 # Project Structure
 
@@ -167,7 +165,7 @@ Represents chip objects.
 
 Handles saving orders to files.
 
----
+
 
 # How to Run
 
@@ -183,7 +181,7 @@ Handles saving orders to files.
 3. Run the main class.
 4. Follow the console instructions to place an order.
 
----
+
 
 # Example Workflow
 
@@ -194,7 +192,7 @@ Handles saving orders to files.
 5. Checkout
 6. Order is saved to a file
 
----
+
 
 # Future Improvements
 
@@ -207,14 +205,25 @@ Possible future upgrades:
 * Input validation improvements
 * Online ordering support
 
----
 
-# Author
+# Favorite block of code 
+    public boolean checkSandwich() {
+    for (MenuItem m : order) {
+    if (m instanceof Sandwich) {    
+    return true;
+    }
+    }
+    return false;
+    }
 
-Created as a Java learning project to practice:
+    //Checks if there is a chip or a drink in the Arraylist
+    public boolean checkChipDrink() {
+        for (MenuItem m : order) {
+            if (m instanceof Drinks || m instanceof Chips) {
+                return true;
+            }
+        }
+        return false;
+    }
 
-* OOP concepts
-* Collections
-* Enums
-* File handling
-* User interface logic
+
