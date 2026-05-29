@@ -9,10 +9,8 @@ public class Sandwich implements MenuItem {
     private boolean extraCheese;
     private String toppings;
     private ArrayList<Topping> enumToppings = new ArrayList<>();
-    private ArrayList<Sauces> enumSauces;
-    private ArrayList<Sides> enumSides;
-    private String sauces;
-    private String sides;
+    private ArrayList<Sauces> enumSauces = new ArrayList<>();
+    private ArrayList<Sides> enumSides = new ArrayList<>();
     private int size;
 
     public Sandwich() {
@@ -32,7 +30,6 @@ public class Sandwich implements MenuItem {
 
     public void displayEnumToppings() {
         int i=1;
-
         for (Topping top : Topping.values()) {
             System.out.println(i++ + " " + top);
         }
@@ -42,6 +39,7 @@ public class Sandwich implements MenuItem {
             System.out.println(top);
         }
     }
+//Sauce section, control system to allow user to add sauces
 
     public void addSauces(Sauces sauces) {
         enumSauces.add(sauces);
@@ -53,9 +51,21 @@ public class Sandwich implements MenuItem {
 
     public ArrayList<Sauces> getEnumSauces() {
         return enumSauces;
-
     }
 
+    public void displayEnumSauces(){
+        int i=1;
+        for(Sauces s: Sauces.values()){
+            System.out.println(i++ + " " + s);
+        }
+    }
+
+    public void displayCustomerEnumSauces(ArrayList<Sauces> sauces){
+        for (Sauces s: sauces){
+            System.out.println(s);
+        }
+    }
+//Sides
     public void addSides(Sides sides) {
         enumSides.add(sides);
     }
@@ -68,8 +78,19 @@ public class Sandwich implements MenuItem {
         return enumSides;
     }
 
+    public void displaySides(){
+        for(Sides s: Sides.values()){
+            System.out.println(s);
+        }
+    }
+    public void displayCustomerSides(ArrayList<Sides> sides){
+        for(Sides s: sides){
+            System.out.println(s);
+        }
+    }
 
-    public Sandwich(String bread, int size,boolean toastBread, String meats, boolean extraMeat, String cheese, boolean extraCheese, ArrayList<Topping> enumTopping) {
+
+    public Sandwich(String bread, int size,boolean toastBread, String meats, boolean extraMeat, String cheese, boolean extraCheese, ArrayList<Topping> enumTopping, ArrayList<Sauces> sauces, ArrayList<Sides> sides) {
         this.bread = bread;
         this.toastBread = toastBread;
         this.meats = meats;
@@ -77,8 +98,8 @@ public class Sandwich implements MenuItem {
         this.cheese = cheese;
         this.extraCheese = extraCheese;
         this.enumToppings = enumTopping;
-        this.sauces = sauces;
-        this.sides = sides;
+        this.enumSauces = sauces;
+        this.enumSides = sides;
         this.size = size;
     }
 
@@ -94,6 +115,10 @@ public class Sandwich implements MenuItem {
 //        return size;
 //    }
 
+
+    public void setEnumToppings(ArrayList<Topping> enumToppings) {
+        this.enumToppings = enumToppings;
+    }
 
     public String getBread() {
         return bread;
@@ -135,17 +160,6 @@ public class Sandwich implements MenuItem {
         this.toppings = toppings;
     }
 
-    public String getSauces() {
-        return sauces;
-    }
-
-    public void setSauces(String sauces) {
-        this.sauces = sauces;
-    }
-
-    public String getSides() {
-        return sides;
-    }
 
     public String getCheese() {
         return cheese;
@@ -163,9 +177,6 @@ public class Sandwich implements MenuItem {
         this.extraCheese = extraCheese;
     }
 
-    public void setSides(String sides) {
-        this.sides = sides;
-    }
 
     public int getSize() {
         return size;
