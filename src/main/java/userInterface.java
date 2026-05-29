@@ -12,11 +12,32 @@ public class userInterface {
         fileManager.saveOrder(item);
     }
 
-    public void display() {
+    public void display(){
+        System.out.println("Welcome to my Application! ");
         boolean running = true;
         do {
             System.out.print("""
-                    Welcome to the Deli!!!
+                    Press 1 to make Order
+                    Press 0 to exit Application
+                    Input:""");
+            int userSelection = Integer.parseInt(myScanner.nextLine());
+            switch (userSelection){
+                case 1:
+                    mainMenu();
+                    break;
+                case 2:
+                    running = false;
+                    break;
+            }
+        }while (running);
+    }
+
+
+    public void mainMenu() {
+        boolean running = true;
+        do {
+            System.out.print("""
+                    Welcome to the Big Zo's Deli!!!
                     What would you like to order?
                     1. Make a Sandwich
                     2. Add Drink
@@ -40,15 +61,20 @@ public class userInterface {
                     getOrder();
                     System.out.println("you like to check out the order or cancel?");
                     String userCheck = myScanner.nextLine();
-                    if (userCheck.equalsIgnoreCase("Check")){
-                        checkOut();
-                        break;
-                    } else if (userCheck.equalsIgnoreCase("cancel")) {
-                        cancelOrder();
-                        break;
+                    if(item.checkSandwich()) {
+                        if (userCheck.equalsIgnoreCase("Check")) {
+                            checkOut();
+                            break;
+                        } else if (userCheck.equalsIgnoreCase("cancel")) {
+                            cancelOrder();
+                            break;
+                        }
+                    } else {
+                        System.err.println("You must purchase a drink or a chip if you don't order a sandwich!");
                     }
                 case "no":
                     running = false;
+                    display();
             }
         } while (running);
     }

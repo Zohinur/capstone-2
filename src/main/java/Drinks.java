@@ -29,7 +29,7 @@ public class Drinks implements MenuItem{
 
     @Override
     public String toString(){
-        return "Drink price: " + getPrice();
+        return "Added a " + getSize() +" Drink price: " + getPrice();
     }
 }
  

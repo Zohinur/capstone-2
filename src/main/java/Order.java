@@ -5,60 +5,51 @@ import java.util.HashSet;
 
 public class Order {
     public ArrayList<MenuItem> order = new ArrayList<MenuItem>();
-    public MenuItem sandwich = new Sandwich();
-    private String customerName;
-    private LocalDate date = LocalDate.now();
-    private LocalTime time = LocalTime.now();
 
-    public LocalDate getDate() {
-        return date;
+
+    public ArrayList<MenuItem> getOrder() {
+        return this.order;
     }
 
-    public String getCustomerName() {
-        return customerName;
-    }
-
-    public void setCustomerName(String customerName) {
-        this.customerName = customerName;
-    }
-
-    public void setDate(LocalDate date) {
-        this.date = date;
-    }
-
-    public LocalTime getTime() {
-        return time;
-    }
-
-    public void setTime(LocalTime time) {
-        this.time = time;
-    }
-
-    public ArrayList<MenuItem> getOrder(){
-return this.order;
-    }
-    public void createItem(MenuItem item){
+    public void createItem(MenuItem item) {
         order.add(item);
     }
-    public void removeItem(){
+
+    public void removeItem() {
         order.clear();
     }
-    public void displayOrder(ArrayList<MenuItem> item){
-        for ( MenuItem m : item){
+
+    public void displayOrder(ArrayList<MenuItem> item) {
+        for (MenuItem m : item) {
             System.out.println(m);
         }
     }
 
-    public double totalPrice(){
-        double price =0;
-        for(MenuItem m: order){
+    public double totalPrice() {
+        double price = 0;
+        for (MenuItem m : order) {
             price += m.getPrice();
         }
         return price;
     }
 
-        @Override
-    public String toString(){
-        return ", sandwhich" + order;
+    public boolean checkSandwich (){
+        for (MenuItem m: order){
+            if (m instanceof Sandwich){
+                return true;
+            }
         }
+        return false;
+    }
+
+    @Override
+    public String toString() {
+        String result = "Here is your receipt from Big Zo's deli: \n ";
+
+        for (MenuItem m : getOrder()) {
+            result += m + "\n";
+        }
+        result += "Total Price: " + totalPrice();
+        return result;
+    }
 }

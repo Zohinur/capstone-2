@@ -162,6 +162,13 @@ public class Sandwich implements MenuItem {
         this.toppings = toppings;
     }
 
+    public void setEnumSides(ArrayList<Sides> enumSides) {
+        this.enumSides = enumSides;
+    }
+
+    public void setEnumSauces(ArrayList<Sauces> enumSauces) {
+        this.enumSauces = enumSauces;
+    }
 
     public String getCheese() {
         return cheese;
@@ -238,6 +245,6 @@ public class Sandwich implements MenuItem {
     }
 
     public String toString() {
-        return ("this is your sandwich" + getBread() + getMeats() + getPrice() +" " + " " + displayCustomerSides(getEnumSides()) + " ");
+        return ("Ordered Sandwich: " + getBread() + getMeats() + getPrice()  + getEnumSides() + " ");
     }
 }

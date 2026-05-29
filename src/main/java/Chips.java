@@ -8,6 +8,6 @@ public class Chips implements MenuItem{
 
     @Override
     public String toString(){
-        return "Ordered 1 chip";
+        return "Ordered 1 chip : 1.50";
     }
 }
