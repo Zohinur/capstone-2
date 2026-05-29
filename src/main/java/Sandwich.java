@@ -7,15 +7,30 @@ public class Sandwich implements MenuItem {
     private boolean extraMeat;
     private String cheese;
     private boolean extraCheese;
-    private String toppings;
     private ArrayList<Topping> enumToppings = new ArrayList<>();
     private ArrayList<Sauces> enumSauces = new ArrayList<>();
     private ArrayList<Sides> enumSides = new ArrayList<>();
     private int size;
 
+    //Created this empty constructor to use methods from this class
     public Sandwich() {
     }
 
+    //Created this constructor to store new sandwich objects
+    public Sandwich(String bread, int size, boolean toastBread, String meats, boolean extraMeat, String cheese, boolean extraCheese, ArrayList<Topping> enumTopping, ArrayList<Sauces> sauces, ArrayList<Sides> sides) {
+        this.bread = bread;
+        this.toastBread = toastBread;
+        this.meats = meats;
+        this.extraMeat = extraMeat;
+        this.cheese = cheese;
+        this.extraCheese = extraCheese;
+        this.enumToppings = enumTopping;
+        this.enumSauces = sauces;
+        this.enumSides = sides;
+        this.size = size;
+    }
+
+    //enumToppings to control the topping
     public void addTopping(Topping topping) {
         enumToppings.add(topping);
     }
@@ -29,19 +44,21 @@ public class Sandwich implements MenuItem {
     }
 
     public void displayEnumToppings() {
-        int i=1;
+        int i = 1;
         for (Topping top : Topping.values()) {
             System.out.println(i++ + " " + top);
         }
     }
+
     public void displayCustomerEnumToppings(ArrayList<Topping> toppings) {
-        for( Topping top: toppings){
+        for (Topping top : toppings) {
             System.out.println(top);
         }
     }
 //Sauce section, control system to allow user to add sauces
 
     public void addSauces(Sauces sauces) {
+        //Adds the sauce to the arraylist
         enumSauces.add(sauces);
     }
 
@@ -53,19 +70,20 @@ public class Sandwich implements MenuItem {
         return enumSauces;
     }
 
-    public void displayEnumSauces(){
-        int i=1;
-        for(Sauces s: Sauces.values()){
+    public void displayEnumSauces() {
+        int i = 1;
+        for (Sauces s : Sauces.values()) {
             System.out.println(i++ + " " + s);
         }
     }
 
-    public void displayCustomerEnumSauces(ArrayList<Sauces> sauces){
-        for (Sauces s: sauces){
+    public void displayCustomerEnumSauces(ArrayList<Sauces> sauces) {
+        for (Sauces s : sauces) {
             System.out.println(s);
         }
     }
-//Sides
+
+    //Enum for the sides
     public void addSides(Sides sides) {
         enumSides.add(sides);
     }
@@ -78,37 +96,18 @@ public class Sandwich implements MenuItem {
         return enumSides;
     }
 
-    public void displaySides(){
+    public void displaySides() {
         int i = 1;
-        for(Sides s: Sides.values()){
-            System.out.println(i++ + " " +s);
-        }
-    }
-    public void displayCustomerSides(ArrayList<Sides> sides){
-        int i =1;
-        for(Sides s: sides){
-            System.out.println(i++ + " " +s);
+        for (Sides s : Sides.values()) {
+            System.out.println(i++ + " " + s);
         }
     }
 
-
-    public Sandwich(String bread, int size,boolean toastBread, String meats, boolean extraMeat, String cheese, boolean extraCheese, ArrayList<Topping> enumTopping, ArrayList<Sauces> sauces, ArrayList<Sides> sides) {
-        this.bread = bread;
-        this.toastBread = toastBread;
-        this.meats = meats;
-        this.extraMeat = extraMeat;
-        this.cheese = cheese;
-        this.extraCheese = extraCheese;
-        this.enumToppings = enumTopping;
-        this.enumSauces = sauces;
-        this.enumSides = sides;
-        this.size = size;
-    }
-
-
-
-    public void setEnumToppings(ArrayList<Topping> enumToppings) {
-        this.enumToppings = enumToppings;
+    public void displayCustomerSides(ArrayList<Sides> sides) {
+        int i = 1;
+        for (Sides s : sides) {
+            System.out.println(i++ + " " + s);
+        }
     }
 
     public String getBread() {
@@ -123,10 +122,6 @@ public class Sandwich implements MenuItem {
         return toastBread;
     }
 
-    public void setToastBread(boolean toastBread) {
-        this.toastBread = toastBread;
-    }
-
     public String getMeats() {
         return meats;
     }
@@ -139,25 +134,6 @@ public class Sandwich implements MenuItem {
         return extraMeat;
     }
 
-    public void setExtraMeat(boolean extraMeat) {
-        this.extraMeat = extraMeat;
-    }
-
-    public String getToppings() {
-        return toppings;
-    }
-
-    public void setToppings(String toppings) {
-        this.toppings = toppings;
-    }
-
-    public void setEnumSides(ArrayList<Sides> enumSides) {
-        this.enumSides = enumSides;
-    }
-
-    public void setEnumSauces(ArrayList<Sauces> enumSauces) {
-        this.enumSauces = enumSauces;
-    }
 
     public String getCheese() {
         return cheese;
@@ -171,10 +147,6 @@ public class Sandwich implements MenuItem {
         return extraCheese;
     }
 
-    public void setExtraCheese(boolean extraCheese) {
-        this.extraCheese = extraCheese;
-    }
-
 
     public int getSize() {
         return size;
@@ -186,7 +158,7 @@ public class Sandwich implements MenuItem {
 
     @Override
     public double getPrice() {
-
+//Using size to get price and adding all the ingredients to find the final price
         if (getSize() == 4) {
             double bread = 5.50;
             double meats = 1.00;
@@ -199,6 +171,7 @@ public class Sandwich implements MenuItem {
             if (extraCheese) {
                 extraCheesse += .30;
             }
+            //Adding all the items nesscary to get the final price and returning it
             return bread + meats + Cheese + extraMmeat + extraCheesse;
 
         } else if (getSize() == 8) {
@@ -230,10 +203,13 @@ public class Sandwich implements MenuItem {
             }
             return bread + meats + Cheese + extraCheesse + extraMmeat;
         }
+        //the default
         return 0;
     }
 
+    @Override
     public String toString() {
-        return ("Ordered Sandwich\uD83E\uDD6A " + "Bread:"+getBread() +" meat:" +getMeats() + " Extra Meat?:"+ isExtraMeat()+ " Cheese:" + getCheese() + " Toppings:" + getEnumToppings());
+        //Overriding toString to build my own to display the object
+        return ("Ordered Sandwich\uD83E\uDD6A " + "Bread:" + getBread() + " Toasted:" + isToastBread() + " meat:" + getMeats() + " Extra Meat?:" + isExtraMeat() + " Cheese:" + getCheese() + " ExtraCheese:" + isExtraCheese() + " \nToppings:" + getEnumToppings() + " Sauces:" + getEnumSauces() + " Sides:" + getEnumSides());
     }
 }

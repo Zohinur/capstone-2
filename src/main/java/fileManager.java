@@ -23,11 +23,11 @@ public class fileManager {
             buff.flush();
             //Creates new file
             buff.close();
-        } catch(IOException e){
+        } catch (IOException e) {
             System.err.println("File not found, Try again " + e);
         }
     }
-    }
+}
 
 
 

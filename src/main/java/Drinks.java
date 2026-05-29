@@ -1,10 +1,11 @@
-public class Drinks implements MenuItem{
+public class Drinks implements MenuItem {
     private String size;
 
     public Drinks(String size) {
         this.size = size;
     }
-    public Drinks(){
+
+    public Drinks() {
     }
 
     public String getSize() {
@@ -16,20 +17,20 @@ public class Drinks implements MenuItem{
     }
 
     @Override
-    public double getPrice(){
+    public double getPrice() {
         if (getSize().equalsIgnoreCase("small")) {
             return 2;
-        } else if (getSize().equalsIgnoreCase("medium")){
+        } else if (getSize().equalsIgnoreCase("medium")) {
             return 2.50;
-        } else if( getSize().equalsIgnoreCase("large")) {
+        } else if (getSize().equalsIgnoreCase("large")) {
             return 3.00;
         }
         return 0;
     }
 
     @Override
-    public String toString(){
-        return "Added a " + getSize() +" Drink \uD83E\uDD6A price: " + getPrice();
+    public String toString() {
+        return "Added a " + getSize() + " Drink \uD83E\uDD6A price: " + getPrice();
     }
 }
  

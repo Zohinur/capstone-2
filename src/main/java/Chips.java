@@ -1,4 +1,4 @@
-public class Chips implements MenuItem{
+public class Chips implements MenuItem {
     private final double price = 1.50;
 
     @Override
@@ -7,7 +7,7 @@ public class Chips implements MenuItem{
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return "Ordered 1 chip \uD83C\uDF5F: 1.50";
     }
 }

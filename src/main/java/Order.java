@@ -7,7 +7,7 @@ public class Order {
     //Creating an arraylist to store objects that are being made
     public ArrayList<MenuItem> order = new ArrayList<MenuItem>();
 
-//Gets all the items in the order
+    //Gets all the items in the order
     public ArrayList<MenuItem> getOrder() {
         return this.order;
     }
@@ -39,9 +39,9 @@ public class Order {
     }
 
     //Checks if the Arraylis has a sandwich if not then it returns
-    public boolean checkSandwich (){
-        for (MenuItem m: order){
-            if (m instanceof Sandwich){
+    public boolean checkSandwich() {
+        for (MenuItem m : order) {
+            if (m instanceof Sandwich) {
                 return true;
             }
         }
@@ -49,9 +49,9 @@ public class Order {
     }
 
     //Checks if there is a chip or a drink in the Arraylist
-    public boolean checkChipDrink(){
-        for(MenuItem m: order){
-            if(m instanceof Drinks || m instanceof Chips){
+    public boolean checkChipDrink() {
+        for (MenuItem m : order) {
+            if (m instanceof Drinks || m instanceof Chips) {
                 return true;
             }
         }

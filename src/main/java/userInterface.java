@@ -10,6 +10,7 @@ public class userInterface {
         fileManager.saveOrder(item);
     }
 
+    //Display method to use in the main class
     public void display() {
         boolean running = true;
         do {
@@ -21,6 +22,7 @@ public class userInterface {
             String userSelection = myScanner.nextLine();
             switch (userSelection) {
                 case "1":
+                    //Goes the main Menu
                     mainMenu();
                     break;
                 case "0":
@@ -36,7 +38,13 @@ public class userInterface {
         do {
             System.out.println();
             System.out.print("""
-                    Welcome to the Big Zo's Deli!!! 🏪
+                    ____    __    ____  _______  __        ______   ______   .___  ___.  _______    .___________.  ______      .______    __    _______     ________    ______    __     _______.    _______   _______  __       __ \s
+                    \\   \\  /  \\  /   / |   ____||  |      /      | /  __  \\  |   \\/   | |   ____|   |           | /  __  \\     |   _  \\  |  |  /  _____|   |       /   /  __  \\  (_ )   /       |   |       \\ |   ____||  |     |  |\s
+                     \\   \\/    \\/   /  |  |__   |  |     |  ,----'|  |  |  | |  \\  /  | |  |__      `---|  |----`|  |  |  |    |  |_)  | |  | |  |  __     `---/  /   |  |  |  |  |/   |   (----`   |  .--.  ||  |__   |  |     |  |\s
+                      \\            /   |   __|  |  |     |  |     |  |  |  | |  |\\/|  | |   __|         |  |     |  |  |  |    |   _  <  |  | |  | |_ |       /  /    |  |  |  |        \\   \\       |  |  |  ||   __|  |  |     |  |\s
+                       \\    /\\    /    |  |____ |  `----.|  `----.|  `--'  | |  |  |  | |  |____        |  |     |  `--'  |    |  |_)  | |  | |  |__| |      /  /----.|  `--'  |    .----)   |      |  '--'  ||  |____ |  `----.|  |\s
+                        \\__/  \\__/     |_______||_______| \\______| \\______/  |__|  |__| |_______|       |__|      \\______/     |______/  |__|  \\______|     /________| \\______/     |_______/       |_______/ |_______||_______||__|\s
+                     🏪
                     
                     What would you like to order?
                     1. Make a Sandwich
@@ -70,7 +78,8 @@ public class userInterface {
                     if (item.checkSandwich() || item.checkChipDrink()) {
                         if (userCheck.equalsIgnoreCase("confirm")) {
                             checkOut();
-                            running =false;
+                            //After checking out it turns running into false so it goes back to home screen
+                            running = false;
                             break;
                         } else if (userCheck.equalsIgnoreCase("cancel")) {
                             cancelOrder();
@@ -81,6 +90,7 @@ public class userInterface {
                         System.err.println("You must purchase a drink or a chip if you don't order a sandwich!");
                     }
                 case "0":
+                    //goes back to home screen and cancels order
                     running = false;
                     cancelOrder();
             }
@@ -122,28 +132,30 @@ public class userInterface {
                     3. rye
                     4. wrap
                     Input:""");
-            int userSelection = Integer.parseInt(myScanner.nextLine());
+            //Using String to store the data from the user so it can handle errors more efficiently than integers.
+            String userSelection = myScanner.nextLine();
 
-            if (userSelection == 1) {
+            if (userSelection.equalsIgnoreCase("1")) {
                 sandwich.setBread("White");
                 break;
-            } else if (userSelection == 2) {
+            } else if (userSelection.equalsIgnoreCase("2")) {
                 sandwich.setBread("Wheat");
                 break;
-            } else if (userSelection == 3) {
+            } else if (userSelection.equalsIgnoreCase("3")) {
                 sandwich.setBread("Rye");
                 break;
-            } else if (userSelection == 4) {
+            } else if (userSelection.equalsIgnoreCase("4")) {
                 sandwich.setBread("Wrap");
                 break;
             } else {
+                //If entered wrong input, it will show this error
                 System.err.println("Entered number out of range, try again");
             }
         }
         return sandwich.getBread();
     }
 
-    //Getting size and then setting the size to determine the bread
+    //Getting size and then setting the size to determine the bread size
     private int getSizeInput() {
         Sandwich sandwich = new Sandwich();
         while (true) {
@@ -154,20 +166,21 @@ public class userInterface {
                      8 inch = $7.00
                      12 inch = $8.50
                      Input:""");
-            int userSelection = Integer.parseInt(myScanner.nextLine());
-            if (userSelection == 4) {
+            String userSelection = myScanner.nextLine();
+            if (userSelection.equalsIgnoreCase("4")) {
                 sandwich.setSize(4);
                 break;
-            } else if (userSelection == 8) {
+            } else if (userSelection.equalsIgnoreCase("8")) {
                 sandwich.setSize(8);
                 break;
-            } else if (userSelection == 12) {
+            } else if (userSelection.equalsIgnoreCase("12")) {
                 sandwich.setSize(12);
                 break;
             } else {
                 System.err.println("Wrong input, Please enter valid input!!");
             }
         }
+        //returns the size
         return sandwich.getSize();
     }
 
@@ -203,24 +216,24 @@ public class userInterface {
                     6. Bacon
                     Input:""");
 
-            int userSelection = Integer.parseInt(myScanner.nextLine());
+            String userSelection = myScanner.nextLine();
 
-            if (userSelection == 1) {
+            if (userSelection.equalsIgnoreCase("1")) {
                 sandwich.setMeats("Steak");
                 break;
-            } else if (userSelection == 2) {
+            } else if (userSelection.equalsIgnoreCase("2")) {
                 sandwich.setMeats("Ham");
                 break;
-            } else if (userSelection == 3) {
+            } else if (userSelection.equalsIgnoreCase("3")) {
                 sandwich.setMeats("Salami");
                 break;
-            } else if (userSelection == 4) {
+            } else if (userSelection.equalsIgnoreCase("4")) {
                 sandwich.setMeats("Roast Beef");
                 break;
-            } else if (userSelection == 5) {
+            } else if (userSelection.equalsIgnoreCase("5")) {
                 sandwich.setMeats("Chicken");
                 break;
-            } else if (userSelection == 6) {
+            } else if (userSelection.equalsIgnoreCase("6")) {
                 sandwich.setMeats("Bacon");
                 break;
             } else {
@@ -257,17 +270,17 @@ public class userInterface {
                 4. Swiss""");
         while (true) {
             System.out.print("Input: ");
-            int userSelection = Integer.parseInt(myScanner.nextLine());
-            if (userSelection == 1) {
+            String userSelection = myScanner.nextLine();
+            if (userSelection.equalsIgnoreCase("1")) {
                 sandwich.setCheese("American");
                 break;
-            } else if (userSelection == 2) {
+            } else if (userSelection.equalsIgnoreCase("2")) {
                 sandwich.setCheese("Provolone");
                 break;
-            } else if (userSelection == 3) {
+            } else if (userSelection.equalsIgnoreCase("3")) {
                 sandwich.setCheese("Cheddar");
                 break;
-            } else if (userSelection == 4) {
+            } else if (userSelection.equalsIgnoreCase("4")) {
                 sandwich.setCheese("Swiss");
                 break;
             } else {
@@ -293,6 +306,7 @@ public class userInterface {
         }
     }
 
+    //Displaying and Adding toppings using boolean
     public ArrayList<Topping> displayRegularTopping() {
         Sandwich sandwich = new Sandwich();
 
@@ -303,17 +317,19 @@ public class userInterface {
         boolean running = true;
         do {
             System.out.println("Enter your number(enter 10 to finish) : ");
-            int userSelection = Integer.parseInt(myScanner.nextLine());
+            String userSelection = myScanner.nextLine();
             switch (userSelection) {
-                case 1:
+                case "1":
+                    //Checks if the object sandwich contains  the topping, if it does not,  it will add and if it does it will send an error
                     if (!sandwich.containsTopping(Topping.LETTUCE)) {
                         System.out.println("Adding lettuce on your sandwich...");
                         sandwich.addTopping(Topping.LETTUCE);
                     } else {
+                        //If sandwich contains topping it will show this error
                         System.err.println("you already have this topping on your sandwich...");
                     }
                     break;
-                case 2:
+                case "2":
                     if (!sandwich.containsTopping(Topping.PEPPERS)) {
                         System.out.println("Adding peppers on your sandwich...");
                         sandwich.addTopping(Topping.PEPPERS);
@@ -321,7 +337,7 @@ public class userInterface {
                         System.err.println("you already have this topping on your sandwich...");
                     }
                     break;
-                case 3:
+                case "3":
                     if (!sandwich.containsTopping(Topping.ONIONS)) {
                         System.out.println("Adding peppers on your sandwich...");
                         sandwich.addTopping(Topping.ONIONS);
@@ -329,7 +345,7 @@ public class userInterface {
                         System.err.println("you already have this topping on your sandwich...");
                     }
                     break;
-                case 4:
+                case "4":
                     if (!sandwich.containsTopping(Topping.TOMATOES)) {
                         System.out.println("Adding tomatoes on your sandwich...");
                         sandwich.addTopping(Topping.TOMATOES);
@@ -337,7 +353,7 @@ public class userInterface {
                         System.err.println("you already have this topping on your sandwich...");
                     }
                     break;
-                case 5:
+                case "5":
                     if (!sandwich.containsTopping(Topping.JALAPENOS)) {
                         System.out.println("Adding peppers on your sandwich...");
                         sandwich.addTopping(Topping.JALAPENOS);
@@ -345,7 +361,7 @@ public class userInterface {
                         System.err.println("you already have this topping on your sandwich...");
                     }
                     break;
-                case 6:
+                case "6":
                     if (!sandwich.containsTopping(Topping.CUCUMBERS)) {
                         System.out.println("Adding peppers on your sandwich...");
                         sandwich.addTopping(Topping.CUCUMBERS);
@@ -353,7 +369,7 @@ public class userInterface {
                         System.err.println("you already have this topping on your sandwich...");
                     }
                     break;
-                case 7:
+                case "7":
                     if (!sandwich.containsTopping(Topping.PICKLES)) {
                         System.out.println("Adding peppers on your sandwich...");
                         sandwich.addTopping(Topping.PICKLES);
@@ -361,7 +377,7 @@ public class userInterface {
                         System.err.println("you already have this topping on your sandwich...");
                     }
                     break;
-                case 8:
+                case "8":
                     if (!sandwich.containsTopping(Topping.GUACAMOLE)) {
                         System.out.println("Adding peppers on your sandwich...");
                         sandwich.addTopping(Topping.GUACAMOLE);
@@ -369,7 +385,7 @@ public class userInterface {
                         System.err.println("you already have this topping on your sandwich...");
                     }
                     break;
-                case 9:
+                case "9":
                     if (!sandwich.containsTopping(Topping.MUSHROOMS)) {
                         System.out.println("Adding peppers on your sandwich...");
                         sandwich.addTopping(Topping.MUSHROOMS);
@@ -377,7 +393,7 @@ public class userInterface {
                         System.err.println("you already have this topping on your sandwich...");
                     }
                     break;
-                case 10:
+                case "10":
                     running = false;
                     break;
                 default:
@@ -385,6 +401,7 @@ public class userInterface {
             }
         } while (running);
 
+        //Displaying the selected the items
         System.out.println("Here are the toppings selected");
         sandwich.displayCustomerEnumToppings(sandwich.getEnumToppings());
         return sandwich.getEnumToppings();
@@ -393,16 +410,17 @@ public class userInterface {
 
     public ArrayList<Sauces> displaySauces() {
         Sandwich sandwich = new Sandwich();
-        System.out.println("Choose what sauces would you like on your sandwich, can't choose the same sauce twice");
+        System.out.println();
+        System.out.println("Choose what sauces you would like on your sandwich, can't choose the same sauce twice!");
 
         sandwich.displayEnumSauces();
         boolean running = true;
         do {
             System.out.println("Select your sauces based on the number(10 to exit): ");
-            int userSelection = Integer.parseInt(myScanner.nextLine());
+            String userSelection = myScanner.nextLine();
 
             switch (userSelection) {
-                case 1:
+                case "1":
                     if (!sandwich.containsSauces(Sauces.MAYO)) {
                         System.out.println("Adding mayo to your sandwich");
                         sandwich.addSauces(Sauces.MAYO);
@@ -410,7 +428,7 @@ public class userInterface {
                         System.err.println("You already have this sauce on your sandwich");
                     }
                     break;
-                case 2:
+                case "2":
                     if (!sandwich.containsSauces(Sauces.MUSTARD)) {
                         System.out.println("Adding mustard to your sandwich");
                         sandwich.addSauces(Sauces.MUSTARD);
@@ -418,7 +436,7 @@ public class userInterface {
                         System.err.println("You already have this sauce on your sandwich");
                     }
                     break;
-                case 3:
+                case "3":
                     if (!sandwich.containsSauces(Sauces.KETCHUP)) {
                         System.out.println("Adding ketchup to your sandwich");
                         sandwich.addSauces(Sauces.KETCHUP);
@@ -426,7 +444,7 @@ public class userInterface {
                         System.err.println("You already have this sauce on your sandwich");
                     }
                     break;
-                case 4:
+                case "4":
                     if (!sandwich.containsSauces(Sauces.RANCH)) {
                         System.out.println("Adding ranch to your sandwich");
                         sandwich.addSauces(Sauces.RANCH);
@@ -434,7 +452,7 @@ public class userInterface {
                         System.err.println("You already have this sauce on your sandwich");
                     }
                     break;
-                case 5:
+                case "5":
                     if (!sandwich.containsSauces(Sauces.THOUSAND)) {
                         System.out.println("Adding thousand to your sandwich");
                         sandwich.addSauces(Sauces.THOUSAND);
@@ -442,7 +460,7 @@ public class userInterface {
                         System.err.println("You already have this sauce on your sandwich");
                     }
                     break;
-                case 6:
+                case "6":
                     if (!sandwich.containsSauces(Sauces.ISLANDS)) {
                         System.out.println("Adding islands to your sandwich");
                         sandwich.addSauces(Sauces.ISLANDS);
@@ -450,7 +468,7 @@ public class userInterface {
                         System.err.println("You already have this sauce on your sandwich");
                     }
                     break;
-                case 7:
+                case "7":
                     if (!sandwich.containsSauces(Sauces.VINAIGRETTE)) {
                         System.out.println("Adding vinaigrette to your sandwich");
                         sandwich.addSauces(Sauces.VINAIGRETTE);
@@ -458,7 +476,7 @@ public class userInterface {
                         System.err.println("You already have this sauce on your sandwich");
                     }
                     break;
-                case 10:
+                case "10":
                     running = false;
                     break;
                 default:
@@ -474,12 +492,14 @@ public class userInterface {
     public ArrayList<Sides> displaySides() {
         Sandwich sandwich = new Sandwich();
 
+        System.out.println();
         System.out.println("Choose the sides you would like");
         sandwich.displaySides();
 
         boolean running = true;
 
         do {
+            System.out.println();
             System.out.println("Choose the sides you would like based on the number(10 to exit)");
             String userSelection = myScanner.nextLine();
 
@@ -522,6 +542,7 @@ public class userInterface {
         String userSelection = myScanner.nextLine();
         newDrink.setSize(userSelection);
 
+        System.out.println("GENERATING A DRINK...");
         item.createItem(newDrink);
     }
 
@@ -529,7 +550,7 @@ public class userInterface {
     public void addChips() {
         Chips newChip = new Chips();
 
-        System.out.println("Adding chips to your order! ");
+        System.out.println("Adding chips to your order!... ");
         //Adds the object
         item.createItem(newChip);
     }
