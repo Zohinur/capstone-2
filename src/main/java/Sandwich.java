@@ -8,7 +8,7 @@ public class Sandwich implements MenuItem {
     private String cheese;
     private boolean extraCheese;
     private String toppings;
-    private ArrayList<Topping> enumToppings;
+    private ArrayList<Topping> enumToppings = new ArrayList<>();
     private ArrayList<Sauces> enumSauces;
     private ArrayList<Sides> enumSides;
     private String sauces;

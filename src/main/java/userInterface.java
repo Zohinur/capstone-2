@@ -80,7 +80,6 @@ public class userInterface {
         String extraCheeseInput = myScanner.nextLine();
         //sandwich.setExtraCheese(extraCheeseInput.equalsIgnoreCase("Yes"));
 
-        displayRegularTopping();
 
         System.out.println("What sauce would you like on your sandwich? ");
         String sauceInput = myScanner.nextLine();
@@ -126,8 +125,9 @@ public class userInterface {
     }
 
     public ArrayList<Topping> displayRegularTopping() {
-        ArrayList<Topping> arrayList = new ArrayList<>();
         Sandwich sandwich = new Sandwich();
+//        ArrayList<Topping> arrayList = sandwich.getEnumToppings();
+
         System.out.println("Please select Regular toppings you would prefer! Enter the number you would like ");
         sandwich.displayEnumToppings();
 
@@ -137,38 +137,83 @@ public class userInterface {
             int userSelection = Integer.parseInt(myScanner.nextLine());
             switch (userSelection) {
                 case 1:
-                    arrayList.add(Topping.LETTUCE);
+                    if(!sandwich.containsTopping(Topping.LETTUCE)){
+                        System.out.println("Adding lettuce on your sandwich...");
+                        sandwich.addTopping(Topping.LETTUCE);
+                    } else {
+                        System.err.println("you already have this topping on your sandwich...");
+                    }
                     break;
                 case 2:
-                    arrayList.add(Topping.PEPPERS);
+                    if(!sandwich.containsTopping(Topping.PEPPERS)){
+                        System.out.println("Adding peppers on your sandwich...");
+                        sandwich.addTopping(Topping.PEPPERS);
+                    } else {
+                        System.err.println("you already have this topping on your sandwich...");
+                    }
                     break;
                 case 3:
-                    arrayList.add(Topping.ONIONS);
+                    if(!sandwich.containsTopping(Topping.ONIONS)){
+                        System.out.println("Adding peppers on your sandwich...");
+                        sandwich.addTopping(Topping.ONIONS);
+                    } else {
+                        System.err.println("you already have this topping on your sandwich...");
+                    }
                     break;
                 case 4:
-                    arrayList.add(Topping.TOMATOES);
+                    if(!sandwich.containsTopping(Topping.TOMATOES)){
+                        System.out.println("Adding tomatoes on your sandwich...");
+                        sandwich.addTopping(Topping.TOMATOES);
+                    } else {
+                        System.err.println("you already have this topping on your sandwich...");
+                    }
                     break;
-                case 5:
-                    arrayList.add(Topping.JALAPENOS);
+                case 5:  if(!sandwich.containsTopping(Topping.JALAPENOS)){
+                    System.out.println("Adding peppers on your sandwich...");
+                    sandwich.addTopping(Topping.JALAPENOS);
+                } else {
+                    System.err.println("you already have this topping on your sandwich...");
+                }
                     break;
                 case 6:
-                    arrayList.add(Topping.CUCUMBERS);
+                    if(!sandwich.containsTopping(Topping.CUCUMBERS)){
+                        System.out.println("Adding peppers on your sandwich...");
+                        sandwich.addTopping(Topping.CUCUMBERS);
+                    } else {
+                        System.err.println("you already have this topping on your sandwich...");
+                    }
                     break;
                 case 7:
-                    arrayList.add(Topping.PICKLES);
+                    if(!sandwich.containsTopping(Topping.PICKLES)){
+                        System.out.println("Adding peppers on your sandwich...");
+                        sandwich.addTopping(Topping.PICKLES);
+                    } else {
+                        System.err.println("you already have this topping on your sandwich...");
+                    }
                     break;
                 case 8:
-                    arrayList.add(Topping.GUACAMOLE);
+                    if(!sandwich.containsTopping(Topping.GUACAMOLE)){
+                        System.out.println("Adding peppers on your sandwich...");
+                        sandwich.addTopping(Topping.GUACAMOLE);
+                    } else {
+                        System.err.println("you already have this topping on your sandwich...");
+                    }
                     break;
                 case 9:
-                    arrayList.add(Topping.MUSHROOMS);
+                    if(!sandwich.containsTopping(Topping.MUSHROOMS)){
+                        System.out.println("Adding peppers on your sandwich...");
+                        sandwich.addTopping(Topping.MUSHROOMS);
+                    } else {
+                        System.err.println("you already have this topping on your sandwich...");
+                    }
                     break;
                 case 10:
                     running = false;
             }
         } while (running);
-        sandwich.displayCustomerEnumToppings(arrayList);
-        return arrayList;
+
+        sandwich.displayCustomerEnumToppings(sandwich.getEnumToppings());
+        return sandwich.getEnumToppings();
 
     }
 
