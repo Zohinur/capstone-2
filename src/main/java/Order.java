@@ -1,9 +1,10 @@
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.HashSet;
 
 public class Order {
-    public HashSet<MenuItem> order = new HashSet<MenuItem>();
+    public ArrayList<MenuItem> order = new ArrayList<MenuItem>();
     public MenuItem sandwich = new Sandwich();
     private String customerName;
     private LocalDate date = LocalDate.now();
@@ -33,7 +34,7 @@ public class Order {
         this.time = time;
     }
 
-    public HashSet<MenuItem> getOrder(){
+    public ArrayList<MenuItem> getOrder(){
 return this.order;
     }
     public void createItem(MenuItem item){
@@ -42,7 +43,7 @@ return this.order;
     public void removeItem(MenuItem item){
         order.remove(item);
     }
-    public void displayOrder(HashSet<MenuItem> item){
+    public void displayOrder(ArrayList<MenuItem> item){
         for ( MenuItem m : item){
             System.out.println(m);
         }

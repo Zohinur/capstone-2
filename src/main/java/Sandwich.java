@@ -15,7 +15,7 @@ public class Sandwich implements MenuItem {
     private String sides;
     private int size;
 
-    public Sandwich(){
+    public Sandwich() {
     }
 
     public void addTopping(Topping topping) {
@@ -25,39 +25,58 @@ public class Sandwich implements MenuItem {
     public boolean containsTopping(Topping topping) {
         return enumToppings.contains(topping);
     }
+
     public ArrayList<Topping> getEnumToppings() {
         return enumToppings;
     }
 
-    public void addSauces(Sauces sauces){
+    public void displayEnumToppings() {
+        int i=1;
+
+        for (Topping top : Topping.values()) {
+            System.out.println(i++ + " " + top);
+        }
+    }
+    public void displayCustomerEnumToppings(ArrayList<Topping> toppings) {
+        for( Topping top: toppings){
+            System.out.println(top);
+        }
+    }
+
+    public void addSauces(Sauces sauces) {
         enumSauces.add(sauces);
     }
-    public boolean containsSauces(Sauces sauces){
+
+    public boolean containsSauces(Sauces sauces) {
         return enumSauces.contains(sauces);
     }
-    public ArrayList<Sauces> getEnumSauces(){
+
+    public ArrayList<Sauces> getEnumSauces() {
         return enumSauces;
+
     }
-    public void addSides(Sides sides){
+
+    public void addSides(Sides sides) {
         enumSides.add(sides);
     }
-    public boolean containsSides(Sides side){
+
+    public boolean containsSides(Sides side) {
         return enumSides.contains(side);
     }
-    public ArrayList<Sides> getEnumSides(){
+
+    public ArrayList<Sides> getEnumSides() {
         return enumSides;
     }
 
 
-
-    public Sandwich(String bread, boolean toastBread, String meats, boolean extraMeat, String cheese, boolean extraCheese, String toppings, String sauces, String sides, int size) {
+    public Sandwich(String bread, int size,boolean toastBread, String meats, boolean extraMeat, String cheese, boolean extraCheese, ArrayList<Topping> enumTopping) {
         this.bread = bread;
         this.toastBread = toastBread;
         this.meats = meats;
         this.extraMeat = extraMeat;
         this.cheese = cheese;
         this.extraCheese = extraCheese;
-        this.toppings = toppings;
+        this.enumToppings = enumTopping;
         this.sauces = sauces;
         this.sides = sides;
         this.size = size;
@@ -185,7 +204,7 @@ public class Sandwich implements MenuItem {
             if (extraCheese) {
                 extraCheesse = .60;
             }
-            return  bread + meats + Cheese + extraMmeat + extraCheesse;
+            return bread + meats + Cheese + extraMmeat + extraCheesse;
 
         }
         if (getSize() == 12) {
@@ -200,12 +219,12 @@ public class Sandwich implements MenuItem {
             if (extraCheese) {
                 extraCheesse += .90;
             }
-            return  bread + meats + Cheese + extraCheesse + extraMmeat;
+            return bread + meats + Cheese + extraCheesse + extraMmeat;
         }
-    return 0;
+        return 0;
     }
 
-    public String toString(){
-        return ("this is your sandwich"+ getBread() + getMeats() + getPrice());
+    public String toString() {
+        return ("this is your sandwich" + getBread() + getMeats() + getPrice());
     }
 }
