@@ -5,14 +5,12 @@ public class userInterface {
     public Order item = new Order();
     Scanner myScanner = new Scanner(System.in);
 
-    public void userinterface() {
-    }
-
+//Saves file and create a new file whenever customer checks out
     public void init() {
         fileManager.saveOrder(item);
     }
 
-    public void display(){
+    public void display() {
         System.out.println("Welcome to my Application! ");
         boolean running = true;
         do {
@@ -21,7 +19,7 @@ public class userInterface {
                     Press 0 to exit Application
                     Input:""");
             int userSelection = Integer.parseInt(myScanner.nextLine());
-            switch (userSelection){
+            switch (userSelection) {
                 case 1:
                     mainMenu();
                     break;
@@ -29,10 +27,10 @@ public class userInterface {
                     running = false;
                     break;
             }
-        }while (running);
+        } while (running);
     }
 
-
+//This is the mainMenu to create the user interface
     public void mainMenu() {
         boolean running = true;
         do {
@@ -43,6 +41,7 @@ public class userInterface {
                     2. Add Drink
                     3. Add chips
                     4. checkout
+                    0. Cancel Order
                     Input:""");
             String userSelection = myScanner.nextLine();
 
@@ -59,69 +58,85 @@ public class userInterface {
                 case "4":
                     getTotalPrice();
                     getOrder();
-                    System.out.println("you like to check out the order or cancel?");
+                    System.out.print("""
+                    Would you like to check out or cancel?
+                    press confirm to checkout
+                    press cancel to cancel the order
+                    Input:""");
                     String userCheck = myScanner.nextLine();
-                    if(item.checkSandwich()) {
-                        if (userCheck.equalsIgnoreCase("Check")) {
+                    //This checks if the order has a sandwich if not it will not allow user to check out
+                    if (item.checkSandwich() || item.checkChipDrink()) {
+                        if (userCheck.equalsIgnoreCase("confirm")) {
                             checkOut();
+                            display();
                             break;
                         } else if (userCheck.equalsIgnoreCase("cancel")) {
                             cancelOrder();
+                            display();
                             break;
                         }
                     } else {
                         System.err.println("You must purchase a drink or a chip if you don't order a sandwich!");
                     }
-                case "no":
-                    running = false;
+                case "0":
+                    cancelOrder();
                     display();
             }
         } while (running);
     }
-
+//this method removes all the item in the order
     private void cancelOrder() {
         item.removeItem();
     }
-
+//This creates a new file everytime it is being called
     private void checkOut() {
         init();
     }
 
-
+//Creating Sandwich with everything being a method
     public void makeSandwich() {
 
-        Sandwich newSandwich = new Sandwich(displayBread(), getSizeInput(), getToastInput().equalsIgnoreCase("yes"), displayMeat(), getExtraMeat().equalsIgnoreCase("yes"), getCheeseInput(), getExtraCheeseInput().equalsIgnoreCase("yes"), displayRegularTopping(), displaySauces(), displaySides());
-
+        Sandwich newSandwich = new Sandwich(displayBread(), getSizeInput(), getToastInput(), displayMeat(), getExtraMeat(), getCheeseInput(), getExtraCheeseInput(), displayRegularTopping(), displaySauces(), displaySides());
+        System.out.println();
         System.out.println("Here is your total for this sandwich:");
         System.out.println(newSandwich.getPrice());
+        //Adding object sandwich to the ArrayList
         item.createItem(newSandwich);
 
     }
+//Displaying bread for the customer
+    public String displayBread() {
+        Sandwich sandwich = new Sandwich();
+        //Runs forever until customer selects a bread and if wrong it will loop again
+        while (true) {
+            System.out.println("""
+                    Choose the bread type you would like to use for your sandwich
+                    1. White
+                    2. Wheat
+                    3. rye
+                    4. wrap
+                    Input:""");
+            int userSelection = Integer.parseInt(myScanner.nextLine());
 
-    private String getExtraCheeseInput() {
-        System.out.println("Would you like some extra cheese?Enter yes or no");
-        //sandwich.setExtraCheese(extraCheeseInput.equalsIgnoreCase("Yes"));
-        return myScanner.nextLine();
+            if (userSelection == 1) {
+                sandwich.setBread("White");
+                break;
+            } else if (userSelection == 2) {
+                sandwich.setBread("Wheat");
+                break;
+            } else if (userSelection == 3) {
+                sandwich.setBread("Rye");
+                break;
+            } else if (userSelection == 4) {
+                sandwich.setBread("Wrap");
+                break;
+            } else {
+                System.err.println("Entered number out of range, try again");
+            }
+        }
+        return sandwich.getBread();
     }
-
-    private String getCheeseInput() {
-        System.out.println("What type of cheese would you like on your sandwich?");
-        //sandwich.setCheese(cheeseInput);
-        return myScanner.nextLine();
-    }
-
-    private String getExtraMeat() {
-        System.out.println("Would you also like extra meat on your sandwich? enter yes or no");
-        //sandwich.setExtraMeat(extraMeat.equalsIgnoreCase("yes"));
-        return myScanner.nextLine();
-    }
-
-    private String getToastInput() {
-        System.out.println("would you like your bread toasted? enter yes or no");
-        // sandwich.setToastBread(toastInput.equalsIgnoreCase("yes"));
-        return myScanner.nextLine();
-    }
-
+//Getting size and then setting the size to determine the bread
     private int getSizeInput() {
         System.out.println("""
                 What size would you like? Enter 4, 8, or 12 depending on your choice. 
@@ -132,37 +147,126 @@ public class userInterface {
         return Integer.parseInt(myScanner.nextLine());
     }
 
-    public void addDrink() {
-        Drinks newDrink = new Drinks();
+    //Returns a boolean to get bread toasted based on customer choice
+    private boolean getToastInput() {
+      while(true) {
+          System.out.println("would you like your bread toasted? enter yes or no");
+          System.out.print("Input:");
+          String userSelection = myScanner.nextLine();
+           if(userSelection.equalsIgnoreCase("yes")){
+               return true;
+           } else if (userSelection.equalsIgnoreCase("no")){
+               return false;
+           } else {
+               System.err.println("Wrong input, please enter yes or no!");
+           }
+      }
+    }
+//Displays all the meat option and takes the user selection
+    public String displayMeat() {
+        Sandwich sandwich = new Sandwich();
+        while (true) {
+            System.out.println("""
+                    What meat you would like in your sandwich?
+                    1. Steak
+                    2. Ham
+                    3. Salami
+                    4. Roast beef
+                    5. Chicken.
+                    6. Bacon""");
 
-        System.out.println("What size drink would you like? Enter small, medium, or large");
-        String userSelection = myScanner.nextLine();
-        newDrink.setSize(userSelection);
+            int userSelection = Integer.parseInt(myScanner.nextLine());
 
-        item.createItem(newDrink);
+            if (userSelection == 1) {
+                sandwich.setMeats("Steak");
+                break;
+            } else if (userSelection == 2) {
+                sandwich.setMeats("Ham");
+                break;
+            } else if (userSelection == 3) {
+                sandwich.setMeats("Salami");
+                break;
+            } else if (userSelection == 4) {
+                sandwich.setMeats("Roast Beef");
+                break;
+            } else if (userSelection == 5) {
+                sandwich.setMeats("Chicken");
+                break;
+            } else if (userSelection == 6) {
+                sandwich.setMeats("Bacon");
+                break;
+            } else {
+                System.err.println("You have entered wrong out of range, please try again");
+            }
+        }
+        return sandwich.getMeats();
     }
 
-    public void addChips() {
-        Chips newChip = new Chips();
-
-        System.out.println("Adding chips to your order! ");
-        item.createItem(newChip);
+    private boolean getExtraMeat() {
+        System.out.println("Would you also like extra meat on your sandwich? enter yes or no");
+        while(true) {
+            System.out.println("would you like your meat toasted? enter yes or no");
+            System.out.print("Input:");
+            String userSelection = myScanner.nextLine();
+            if(userSelection.equalsIgnoreCase("yes")){
+                return true;
+            } else if (userSelection.equalsIgnoreCase("no")){
+                return false;
+            } else {
+                System.err.println("Wrong input, please enter yes or no!");
+            }
+        }
     }
 
-    public void getOrder() {
-        item.displayOrder(item.getOrder());
+    private String getCheeseInput() {
+       Sandwich sandwich = new Sandwich();
+        System.out.println("""
+                What type of cheese would you like on your sandwich?
+                1. American
+                2. provolone
+                3. Cheddar
+                4. Swiss""");
+        while(true){
+            System.out.println();
+            System.out.println("Input: ");
+            int userSelection = Integer.parseInt(myScanner.nextLine());
+            if(userSelection == 1) {
+                sandwich.setCheese("American");
+                break;
+            }else if(userSelection == 2){
+                sandwich.setCheese("Provolone");
+                break;
+            } else if(userSelection == 3){
+                sandwich.setCheese("Cheddar");
+                break;
+            } else if (userSelection == 4) {
+                sandwich.setCheese("Swiss");
+                break;
+            } else {
+                System.err.println("Invalid input, Please try again!");
+            }
+        }
+        return sandwich.getCheese();
     }
 
-
-    public void getTotalPrice() {
-        double totalPrice = item.totalPrice();
-        System.out.println();
-        System.out.println("Here is your total price of your order: " + totalPrice);
+    private boolean getExtraCheeseInput() {
+        System.out.println("Would you like some extra cheese?Enter yes or no");
+        while(true) {
+            System.out.println("would you like your extra Cheese? enter yes or no");
+            System.out.print("Input:");
+            String userSelection = myScanner.nextLine();
+            if(userSelection.equalsIgnoreCase("yes")){
+                return true;
+            } else if (userSelection.equalsIgnoreCase("no")){
+                return false;
+            } else {
+                System.err.println("Wrong input, please enter yes or no!");
+            }
+        }
     }
 
     public ArrayList<Topping> displayRegularTopping() {
         Sandwich sandwich = new Sandwich();
-//        ArrayList<Topping> arrayList = sandwich.getEnumToppings();
 
         System.out.println("Please select Regular toppings you would prefer! Enter the number you would like ");
         sandwich.displayEnumToppings();
@@ -246,6 +350,9 @@ public class userInterface {
                     break;
                 case 10:
                     running = false;
+                    break;
+                default:
+                    System.err.println("Entered wrong input, please try again");
             }
         } while (running);
 
@@ -323,11 +430,14 @@ public class userInterface {
                     break;
                 case 10:
                     running = false;
+                    break;
+                default:
+                    System.err.println("Entered wrong input, please try again");
             }
         } while (running);
         return sandwich.getEnumSauces();
     }
-
+//Displays all the options for the sides
     public ArrayList<Sides> displaySides() {
         Sandwich sandwich = new Sandwich();
 
@@ -359,82 +469,44 @@ public class userInterface {
                     break;
                 case "10":
                     running = false;
+                    break;
+                default:
+                    System.err.println("Entered the wrong input, please try again!");
             }
         } while (running);
 
         return sandwich.getEnumSides();
     }
 
-    public String displayMeat() {
-        Sandwich sandwich = new Sandwich();
-        while (true) {
-            System.out.println("""
-                    What meat you would like in your sandwich?
-                    1. Steak
-                    2. Ham
-                    3. Salami
-                    4. Roast beef
-                    5. Chicken.
-                    6. Bacon""");
+//Drink section, allowing users to add drink
+    public void addDrink() {
+        Drinks newDrink = new Drinks();
 
-            int userSelection = Integer.parseInt(myScanner.nextLine());
+        System.out.println("What size drink would you like? Enter small, medium, or large");
+        String userSelection = myScanner.nextLine();
+        newDrink.setSize(userSelection);
 
-            if (userSelection == 1) {
-                sandwich.setMeats("Steak");
-                break;
-            } else if (userSelection == 2) {
-                sandwich.setMeats("Ham");
-                break;
-            } else if (userSelection == 3) {
-                sandwich.setMeats("Salami");
-                break;
-            } else if (userSelection == 4) {
-                sandwich.setMeats("Roast Beef");
-                break;
-            } else if (userSelection == 5) {
-                sandwich.setMeats("Chicken");
-                break;
-            } else if (userSelection == 6) {
-                sandwich.setMeats("Bacon");
-                break;
-            } else {
-                System.err.println("You have entered wrong out of range, please try again");
-            }
-        }
-        return sandwich.getMeats();
+        item.createItem(newDrink);
+    }
+//Adds object chips to item arraylist
+    public void addChips() {
+        Chips newChip = new Chips();
+
+        System.out.println("Adding chips to your order! ");
+        //Adds the object
+        item.createItem(newChip);
+    }
+//TESTING
+    public void getOrder() {
+        item.displayOrder(item.getOrder());
     }
 
-    public String displayBread() {
-        Sandwich sandwich = new Sandwich();
-        while (true) {
-            System.out.println("""
-                    Choose the bread type you would like to use for your sandwich
-                    1. White
-                    2. Wheat
-                    3. rye
-                    4. wrap
-                    Input:""");
-            int userSelection = Integer.parseInt(myScanner.nextLine());
-
-            if (userSelection == 1) {
-                sandwich.setBread("White");
-                break;
-            } else if (userSelection == 2) {
-                sandwich.setBread("Wheat");
-                break;
-            } else if (userSelection == 3) {
-                sandwich.setBread("Rye");
-                break;
-            } else if (userSelection == 4) {
-                sandwich.setBread("Wrap");
-                break;
-            } else {
-                System.err.println("Entered number out of range, try again");
-            }
-        }
-        return sandwich.getBread();
+//TESTING
+    public void getTotalPrice() {
+        double totalPrice = item.totalPrice();
+        System.out.println();
+        System.out.println("Here is your total price of your order: " + totalPrice);
     }
-
 }
 
 

@@ -42,6 +42,15 @@ public class Order {
         return false;
     }
 
+    public boolean checkChipDrink(){
+        for(MenuItem m: order){
+            if(m instanceof Drinks || m instanceof Chips){
+                return true;
+            }
+        }
+        return false;
+    }
+
     @Override
     public String toString() {
         String result = "Here is your receipt from Big Zo's deli: \n ";

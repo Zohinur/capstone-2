@@ -105,17 +105,6 @@ public class Sandwich implements MenuItem {
         this.size = size;
     }
 
-//    public int getSize(int userSelection){
-//        int size =0;
-//        if(userSelection == 4){
-//            size = 4;
-//        } else if(userSelection == 8){
-//            size = 8;
-//        } else if( userSelection == 12){
-//            size = 12;
-//        }
-//        return size;
-//    }
 
 
     public void setEnumToppings(ArrayList<Topping> enumToppings) {
